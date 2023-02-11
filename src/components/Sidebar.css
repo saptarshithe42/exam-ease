@@ -45,3 +45,7 @@
   .sidebar .links .active img {
     filter: invert(40%);
   }
+
+  .sidebar li{
+    list-style-type: none;
+  }

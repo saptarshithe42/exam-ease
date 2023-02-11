@@ -9,7 +9,8 @@ import Login from './pages/login/Login';
 import Signup from './pages/signup/Signup';
 import Navbar from './components/Navbar';
 import Sidebar from './components/Sidebar';
-import OnlineUsers from './components/OnlineUsers';
+import Create from './pages/create/Create';
+import QuestionPaperForm from './pages/question_paper_form/QuestionPaperForm';
 
 
 function App() {
@@ -39,6 +40,11 @@ function App() {
               <Route path="/signup">
                 {user && <Redirect to="/" />}
                 {!user && <Signup />}
+              </Route>
+
+              <Route path="/create">
+                {!user && <Redirect to="/login" />}
+                {user && <Create />}
               </Route>
 
             </Switch>

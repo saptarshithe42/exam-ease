@@ -29,7 +29,7 @@ function Sidebar() {
                         <li>
                             <NavLink to="/create">
                                 <img src={AddIcon} alt="add project icon" />
-                                <span>New Project</span>
+                                <span>Set Question Paper</span>
                             </NavLink>
                         </li>
                     </ul>

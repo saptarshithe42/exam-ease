@@ -1,3 +1,4 @@
 .App{
-  background-color: red;
+  background-color: rgb(241, 87, 87);
+  display: flex;
 }
