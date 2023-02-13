@@ -23,13 +23,13 @@ function Sidebar() {
                         <li>
                             <NavLink exact to="/">
                                 <img src={DashboardIcon} alt="dashboard icon" />
-                                <span>Dashboard</span>
+                                <span>Your Question Papers</span>
                             </NavLink>
                         </li>
                         <li>
                             <NavLink to="/create">
                                 <img src={AddIcon} alt="add project icon" />
-                                <span>Set Question Paper</span>
+                                <span>New Question Paper</span>
                             </NavLink>
                         </li>
                     </ul>

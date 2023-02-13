@@ -9,7 +9,6 @@ import { projectFirestore } from '../../firebase/config'
 
 export default function Create() {
 
-    const { addDocument, deleteDocument, updateDocument, response } = useFirestore("question_papers")
     const { user } = useAuthContext()
     const history = useHistory()
 
@@ -44,48 +43,27 @@ export default function Create() {
             createdBy: user.uid
         }
 
-        // await addDocument(questionPaper)
+        try {
 
-        const addedQuestionPaper = await projectFirestore.collection("question_papers").add(questionPaper)
+            // adding the question paper
+            const addedQuestionPaper = await projectFirestore.collection("question_papers").add(questionPaper)
+            const userRef = projectFirestore.collection("users").doc(user.uid);
 
-        const docRef = projectFirestore.collection("users").doc(user.uid);
-
-        // Get the document
-        docRef.get().then((doc) => {
-            if (!doc.exists) {
-                console.log("No such document!");
-            } else {
-                // Get the current array value
-                let arrayValue = doc.data().arrayField;
-
-                // Add the new element to the array
-                arrayValue.push(addedQuestionPaper.id);
-
-                // Update the document with the new array value
-                docRef.update({
-                    arrayField: arrayValue
-                });
-            }
-        })
-            .catch((error) => {
-                console.log("Error getting document:", error);
-            });
-
-        // const userRef = projectFirestore.collection("users").doc(user.uid)
+            let qpArray = (await userRef.get()).data().questionPaperIDs
 
 
-
-        // await userRef.update({ 
-        //     questionPaperIDs : userRef.questionPaperIDs.arrayUnion(addedQuestionPaper.id)
-        //     // questionPaperIDs : [...userRef.questionPaperIDs, addedQuestionPaper.id]
-        // })
+            qpArray.push(addedQuestionPaper.id)
+            // adding currently created question paper ID in questionPaperIDs array in user document
+            await userRef.update({
+                questionPaperIDs: qpArray
+            })
+        }
+        catch (error) {
+            console.log("Could not update documents.")
+        }
 
         history.push("/")
 
-        // // redirecting user to dashboard if data successfully saved to data
-        // if (!response.error) {
-        // 	history.push("/")
-        // }
     }
 
     return (
@@ -107,7 +85,6 @@ export default function Create() {
 
                 </form>}
 
-            <div>{numberOfQuestions}</div>
             {firstFormSubmitted && (enteredQuestions <= numberOfQuestions) &&
                 <div>
                     <MCQInput
@@ -119,19 +96,21 @@ export default function Create() {
                 </div>
             }
             {
-                <div>
-                    Entered questions :-
-                    {
-                        questionsList.map((question) => {
-                            return (
-                                <div key={Math.random()}>
-                                    {question.question}
-                                    {question.options}
-                                </div>
-                            )
-                        })}
+                <>
+                    <div>
+                        Entered questions :-
+                        {
+                            questionsList.map((question) => {
+                                return (
+                                    <div key={Math.random()}>
+                                        {question.question}
+                                        {question.options}
+                                    </div>
+                                )
+                            })}
+                    </div>
                     <button onClick={submitQuestionPaper}>Submit</button>
-                </div>
+                </>
             }
         </div>
     )
