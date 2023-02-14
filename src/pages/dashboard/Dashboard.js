@@ -30,7 +30,7 @@ export default function Dashboard() {
 
 	return (
 		<div>
-			{questionPaperArray &&
+			{(questionPaperArray.length != 0) &&
 				
 				questionPaperArray.map((questionPaper) => {
 					

@@ -1,7 +1,8 @@
 .sidebar {
     width: 300px;
     min-width: 300px;
-    background: var(--primary-color);
+    /* background: var(--primary-color); */
+    background: rgba(205, 235, 154, 0.775);
     min-height: 100vh;
     box-sizing: border-box;
     position: relative;

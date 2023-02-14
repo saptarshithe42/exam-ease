@@ -10,7 +10,7 @@ import Signup from './pages/signup/Signup';
 import Navbar from './components/Navbar';
 import Sidebar from './components/Sidebar';
 import Create from './pages/create/Create';
-import QuestionPaperForm from './pages/question_paper_form/QuestionPaperForm';
+import Exam from './pages/exam/Exam';
 
 
 function App() {
@@ -45,6 +45,11 @@ function App() {
               <Route path="/create">
                 {!user && <Redirect to="/login" />}
                 {user && <Create />}
+              </Route>
+
+              <Route path="/exam">
+                {!user && <Redirect to="/login" />}
+                {user && <Exam />}
               </Route>
 
             </Switch>
