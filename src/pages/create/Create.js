@@ -1,11 +1,18 @@
 import React from 'react'
 import { useState } from 'react'
-import "./Create.css"
-import MCQInput from './MCQInput'
 import { useFirestore } from '../../hooks/useFireStore'
 import { useAuthContext } from '../../hooks/useAuthContext'
 import { useHistory } from 'react-router-dom'
 import { projectFirestore } from '../../firebase/config'
+
+//styles
+import "./Create.css"
+
+// components
+import MCQInput from './MCQInput'
+import Sidebar from '../../components/Sidebar'
+
+
 
 export default function Create() {
 
@@ -68,6 +75,7 @@ export default function Create() {
 
     return (
         <div>
+            {user && <Sidebar />}
             {!firstFormSubmitted &&
                 <form>
                     <label>

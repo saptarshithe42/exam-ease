@@ -1,12 +1,13 @@
 .sidebar {
-    width: 300px;
+    width: 20vw;
     min-width: 300px;
     /* background: var(--primary-color); */
     background: rgba(205, 235, 154, 0.775);
-    min-height: 100vh;
+    /* min-height: 100vh; */
     box-sizing: border-box;
     position: relative;
     color: #fff;
+    /* margin-left: 0; */
   }
   .sidebar-content {
     position: fixed;

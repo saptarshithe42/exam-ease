@@ -22,12 +22,12 @@ function App() {
     <div className="App">
       {authIsReady &&
         <BrowserRouter>
-          {user && <Sidebar />}
-          <div className="container">
             <Navbar />
+          <div className="app-div">
             <Switch>
               <Route exact path="/">
                 {!user && <Redirect to="/login" />}
+                {user && <Sidebar />}
                 {user && <Dashboard />}
               </Route>
 

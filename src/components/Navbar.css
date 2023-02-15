@@ -1,9 +1,12 @@
-.navbar
-{
-    display: flex;
+.navbar {
+    width: 100%;
+    
 }
 
-.navbar li{
-    display: inline-block;
-    margin-right: auto;
+.navbar a{
+    text-decoration: none;
+}
+
+ul .btn{
+    margin: 0.4rem;
 }

@@ -1,4 +1,13 @@
 .App{
   background-color: rgb(241, 87, 87);
-  display: flex;
+  /* display: flex; */
+  width: 100vw;
+height: 100vh;
+}
+
+.app-div{
+  padding: 0;
+  width: 100vw;
+height: 100vh;
+display: flex;
 }

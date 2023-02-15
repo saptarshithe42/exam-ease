@@ -30,6 +30,7 @@ function Exam() {
         }
         catch (err) {
             setError(err)
+            setQuestionPaper(null)
             console.log(err)
         }
     }

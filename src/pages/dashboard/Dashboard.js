@@ -1,10 +1,13 @@
 import { useCollection } from "../../hooks/useCollection"
 import { useEffect, useState } from "react";
 import { useAuthContext } from "../../hooks/useAuthContext"
+import { projectFirestore } from "../../firebase/config";
 
 // styles
 import './Dashboard.css'
-import { projectFirestore } from "../../firebase/config";
+
+// components
+import Sidebar from "../../components/Sidebar";
 
 
 
@@ -29,7 +32,8 @@ export default function Dashboard() {
 
 
 	return (
-		<div>
+		<div className="dashboard container">
+			{/* {user && <Sidebar />} */}
 			{(questionPaperArray.length != 0) &&
 				
 				questionPaperArray.map((questionPaper) => {
