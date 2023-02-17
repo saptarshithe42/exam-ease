@@ -1,16 +1,16 @@
-import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
-import { useAuthContext } from './hooks/useAuthContext';
+import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
+import { useAuthContext } from "./hooks/useAuthContext";
 
 // styles
-import './App.css'
+import "./App.css"
 
-import Dashboard from './pages/dashboard/Dashboard';
-import Login from './pages/login/Login';
-import Signup from './pages/signup/Signup';
-import Navbar from './components/Navbar';
-import Sidebar from './components/Sidebar';
-import Create from './pages/create/Create';
-import Exam from './pages/exam/Exam';
+import Dashboard from "./pages/dashboard/Dashboard";
+import Login from "./pages/login/Login";
+import Signup from "./pages/signup/Signup";
+import Navbar from "./components/Navbar";
+import Sidebar from "./components/Sidebar";
+import Create from "./pages/create/Create";
+import Exam from "./pages/exam/Exam";
 
 
 function App() {
@@ -23,11 +23,11 @@ function App() {
       {authIsReady &&
         <BrowserRouter>
             <Navbar />
-          <div className="app-div">
+          <div>
             <Switch>
               <Route exact path="/">
                 {!user && <Redirect to="/login" />}
-                {user && <Sidebar />}
+                {/* {user && <Sidebar />} */}
                 {user && <Dashboard />}
               </Route>
 

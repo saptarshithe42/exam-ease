@@ -74,7 +74,7 @@ export default function Create() {
     }
 
     return (
-        <div>
+        <div className="create">
             {user && <Sidebar />}
             {!firstFormSubmitted &&
                 <form>
@@ -104,7 +104,7 @@ export default function Create() {
                 </div>
             }
             {
-                <>
+                <div>
                     <div>
                         Entered questions :-
                         {
@@ -118,7 +118,7 @@ export default function Create() {
                             })}
                     </div>
                     <button onClick={submitQuestionPaper}>Submit</button>
-                </>
+                </div>
             }
         </div>
     )

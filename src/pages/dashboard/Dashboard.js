@@ -32,8 +32,10 @@ export default function Dashboard() {
 
 
 	return (
-		<div className="dashboard container">
-			{/* {user && <Sidebar />} */}
+		<div className="dashboard">
+
+			{user && <Sidebar />}
+			<div className="question-div">
 			{(questionPaperArray.length != 0) &&
 				
 				questionPaperArray.map((questionPaper) => {
@@ -42,6 +44,7 @@ export default function Dashboard() {
 				})
 
 			}
+			</div>
 		</div>
 	)
 }

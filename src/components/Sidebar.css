@@ -5,7 +5,10 @@
     background: rgba(205, 235, 154, 0.775);
     /* min-height: 100vh; */
     box-sizing: border-box;
+    /* position: fixed; */
     position: relative;
+    /* top: 0;
+    left: 0; */
     color: #fff;
     /* margin-left: 0; */
   }

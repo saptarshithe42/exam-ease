@@ -1,13 +1,14 @@
-.App{
+.App {
   background-color: rgb(241, 87, 87);
   /* display: flex; */
   width: 100vw;
-height: 100vh;
+  height: 100vh;
+
 }
 
-.app-div{
+.app-div {
   padding: 0;
   width: 100vw;
-height: 100vh;
-display: flex;
+  height: 100vh;
+  display: flex;
 }

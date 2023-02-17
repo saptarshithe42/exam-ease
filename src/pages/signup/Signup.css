@@ -1,8 +1,18 @@
 .auth-form {
-    max-width: 360px;
-    margin: 60px auto;
-    padding: 40px;
-    border: 1px solid #ddd;
-    box-shadow: 3px 3px 5px rgba(0,0,0,0.05);
-    background: #fff;
-  }
+
+  flex-direction: column;
+  display: flex;
+  /* width: 30%; */
+  width: 18rem;
+  align-items: center;
+  line-height: 2rem;
+  height: 50%;
+  /* margin: 60px auto; */
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 15vh;
+  padding: 40px;
+  border: 1px solid #ddd;
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.05);
+  background: #fff;
+}
