@@ -34,16 +34,18 @@ export default function Dashboard() {
 	return (
 		<div className="dashboard">
 
-			{user && <Sidebar />}
+			{/* <div className="row">
+				{user && <Sidebar />}
+			</div> */}
 			<div className="question-div">
-			{(questionPaperArray.length != 0) &&
-				
-				questionPaperArray.map((questionPaper) => {
-					
-					return (<div key={questionPaper}>{questionPaper}</div>)
-				})
+				{(questionPaperArray.length != 0) &&
 
-			}
+					questionPaperArray.map((questionPaper) => {
+
+						return (<div key={questionPaper}>{questionPaper}</div>)
+					})
+
+				}
 			</div>
 		</div>
 	)

@@ -19,16 +19,20 @@ function App() {
 
 
   return (
+    // <div className="app-div">
     <div className="App">
       {authIsReady &&
         <BrowserRouter>
-            <Navbar />
-          <div>
+          <Navbar />
+          {/* <div style={{display : "flex", flexDirection : "row", height : "100%"}}> */}
+          <div style={{ height: "90%" }}>
             <Switch>
               <Route exact path="/">
                 {!user && <Redirect to="/login" />}
-                {/* {user && <Sidebar />} */}
-                {user && <Dashboard />}
+                <div style={{ display: "flex", flexDirection: "row", height: "100%" }}>
+                  {user && <Sidebar />}
+                  {user && <Dashboard />}
+                </div>
               </Route>
 
 
@@ -44,7 +48,11 @@ function App() {
 
               <Route path="/create">
                 {!user && <Redirect to="/login" />}
-                {user && <Create />}
+                <div style={{ display: "flex", flexDirection: "row", height: "100%" }}>
+                  {user && <Sidebar />}
+                  {user && <Create />}
+                </div>
+                {/* {user && <Create />} */}
               </Route>
 
               <Route path="/exam">

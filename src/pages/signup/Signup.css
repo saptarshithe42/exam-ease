@@ -1,9 +1,9 @@
-.auth-form {
+.signup-form{
 
   flex-direction: column;
   display: flex;
   /* width: 30%; */
-  width: 18rem;
+  width: 20rem;
   align-items: center;
   line-height: 2rem;
   height: 50%;
@@ -15,4 +15,16 @@
   border: 1px solid #ddd;
   box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.05);
   background: #fff;
+}
+
+.signup-form label{
+  width: 90%;
+}
+
+.signup-form input{
+  width: 100%;
+}
+
+.signup-form .btn{
+  margin: 1rem;
 }

@@ -53,7 +53,7 @@ export default function Signup() {
 
 
   return (
-    <form className="auth-form" onSubmit={handleSubmit}>
+    <form className="signup-form" onSubmit={handleSubmit}>
       <h2>Sign up</h2>
 
       <label>
@@ -97,7 +97,7 @@ export default function Signup() {
         {thumbnailError && <div className="error">{thumbnailError}</div>}
       </label>
 
-      {!isPending && <button className="btn">Sign up</button>}
+      {!isPending && <button className="btn btn-outline-success">Sign up</button>}
       {isPending && <button className="btn" disabled>loading</button>}
       {error && <div className="error">{error}</div>}
     </form>

@@ -18,7 +18,7 @@ export default function Login() {
   }
 
   return (
-    <form className="auth-form" onSubmit={handleSubmit}>
+    <form className="login-form" onSubmit={handleSubmit}>
       <h2>Login</h2>
 
       <label>

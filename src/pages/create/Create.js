@@ -75,9 +75,9 @@ export default function Create() {
 
     return (
         <div className="create">
-            {user && <Sidebar />}
+            {/* {user && <Sidebar />} */}
             {!firstFormSubmitted &&
-                <form>
+                <form className="create-form">
                     <label>
                         <span>Enter number of questions : </span>
                         <input
