@@ -11,6 +11,7 @@ import Navbar from "./components/Navbar";
 import Sidebar from "./components/Sidebar";
 import Create from "./pages/create/Create";
 import Exam from "./pages/exam/Exam";
+import QuestionPaper from "./question_paper/QuestionPaper";
 
 
 function App() {
@@ -25,12 +26,14 @@ function App() {
         <BrowserRouter>
           <Navbar />
           {/* <div style={{display : "flex", flexDirection : "row", height : "100%"}}> */}
-          <div style={{ height: "90%" }}>
+          {/* <div style={{ height: "90%" }}> */}
+          <div>
             <Switch>
               <Route exact path="/">
                 {!user && <Redirect to="/login" />}
-                <div style={{ display: "flex", flexDirection: "row", height: "100%" }}>
-                  {user && <Sidebar />}
+                <div style={{ display: "flex", flexDirection: "row", height: "100%",
+                backgroundColor: "#b0f59d" }}>
+                  {/* {user && <Sidebar />} */}
                   {user && <Dashboard />}
                 </div>
               </Route>
@@ -48,8 +51,8 @@ function App() {
 
               <Route path="/create">
                 {!user && <Redirect to="/login" />}
-                <div style={{ display: "flex", flexDirection: "row", height: "100%" }}>
-                  {user && <Sidebar />}
+                <div style={{ display: "flex", flexDirection: "row", height: "100%",
+                backgroundColor: "#b0f59d" }}>
                   {user && <Create />}
                 </div>
                 {/* {user && <Create />} */}
@@ -58,6 +61,11 @@ function App() {
               <Route path="/exam">
                 {!user && <Redirect to="/login" />}
                 {user && <Exam />}
+              </Route>
+
+              <Route path="/questionpaper/:id">
+                {!user && <Redirect to="/login" />}
+                {user && <QuestionPaper />}
               </Route>
 
             </Switch>

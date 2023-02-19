@@ -65,7 +65,7 @@ function MCQInput(props) {
                         onChange={(e) => setQuestion(e.target.value)}
                         value={question}
                     ></textarea>
-                    <button onClick={() => { setQuestionEntered(true) }}>Add question</button>
+                    <button onClick={() => { setQuestionEntered(true) }} className="btn btn-primary">Add question</button>
                 </label>
             }
 
@@ -78,12 +78,12 @@ function MCQInput(props) {
                         onChange={(e) => setCorrectAnswer(e.target.value)}
                         value={correctAnswer}
                     />
-                    <button onClick={addCorrectAnswer}>OK</button>
+                    <button onClick={addCorrectAnswer} className="btn btn-primary">OK</button>
                 </label>
             }
             {questionEntered && !enterOption && enteredCorrectAnswer &&
 
-                <button onClick={() => setEnterOption(true)}>Add other option</button>
+                <button onClick={() => setEnterOption(true)} >Add other option</button>
             }
             {enterOption &&
                 <label>

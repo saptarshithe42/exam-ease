@@ -8,7 +8,9 @@ import './Dashboard.css'
 
 // components
 import Sidebar from "../../components/Sidebar";
-
+import QuestionPaperSelectBox from "../../components/QuestionPaperSelectBox";
+import QuestionViewComponent from "../../components/QuestionViewComponent";
+import QuestionPaperList from "../../components/QuestionPaperList";
 
 
 
@@ -37,15 +39,17 @@ export default function Dashboard() {
 			{/* <div className="row">
 				{user && <Sidebar />}
 			</div> */}
+			{user && <Sidebar />}
 			<div className="question-div">
-				{(questionPaperArray.length != 0) &&
+				{/* {(questionPaperArray.length != 0) &&
 
 					questionPaperArray.map((questionPaper) => {
 
 						return (<div key={questionPaper}>{questionPaper}</div>)
 					})
 
-				}
+				} */}
+				{(questionPaperArray.length != 0) && <QuestionPaperList questions={questionPaperArray} />}
 			</div>
 		</div>
 	)
