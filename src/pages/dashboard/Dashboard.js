@@ -32,6 +32,36 @@ export default function Dashboard() {
 
 	}, [questionPaperArray.length])
 
+	const deletePaper = async (id) => {
+		// console.log(id);
+
+		try{
+			const questionsRef = projectFirestore.collection("question_papers")
+
+			// deleting the question paper
+			await questionsRef.doc(id).delete()
+
+			const userRef = projectFirestore.collection("users").doc(user.uid)
+
+			const newArr = questionPaperArray.filter((questionPaper) => {
+				return (questionPaper.id !== id)
+			})
+			
+			// adding currently created question paper ID in questionPaperIDs array in user document
+			await userRef.update({
+				questionPaperIDs: newArr
+			})
+
+			setQuestionPaperArray(newArr)
+		}
+		catch(err)
+		{
+			console.log(err);
+		}
+
+		
+	}
+
 
 	return (
 		<div className="dashboard">
@@ -41,15 +71,11 @@ export default function Dashboard() {
 			</div> */}
 			{user && <Sidebar />}
 			<div className="question-div">
-				{/* {(questionPaperArray.length != 0) &&
-
-					questionPaperArray.map((questionPaper) => {
-
-						return (<div key={questionPaper}>{questionPaper}</div>)
-					})
-
-				} */}
-				{(questionPaperArray.length != 0) && <QuestionPaperList questions={questionPaperArray} />}
+				{(questionPaperArray.length != 0) && 
+				<QuestionPaperList 
+				questions={questionPaperArray}
+				deletePaper={deletePaper}
+				 />}
 			</div>
 		</div>
 	)

@@ -1,6 +1,6 @@
 .create {
     flex-grow: 5;
-    width: 70%;
+    width: 30%;
     height: 100%;
     display: flex;
     flex-direction: row;
@@ -9,9 +9,29 @@
 .create-form{
     display: flex;
     flex-direction: column;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .create-div .btn
 {
     width: 40%;
+    font-size: 80%;
+}
+
+.numInput
+{
+    width: 10%;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
 }

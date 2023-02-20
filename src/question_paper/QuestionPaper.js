@@ -6,7 +6,7 @@ function QuestionPaper() {
   const { id } = useParams()
 
   return (
-    <div>QuestionPaper ID</div>
+    <div>QuestionPaper ID : {id}</div>
   )
 }
 

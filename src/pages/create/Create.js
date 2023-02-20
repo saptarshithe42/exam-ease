@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { useFirestore } from '../../hooks/useFireStore'
 import { useAuthContext } from '../../hooks/useAuthContext'
 import { useHistory } from 'react-router-dom'
-import { projectFirestore } from '../../firebase/config'
+import { projectFirestore, timestamp } from '../../firebase/config'
 
 //styles
 import "./Create.css"
@@ -19,6 +19,7 @@ export default function Create() {
 	const { user } = useAuthContext()
 	const history = useHistory()
 
+	const [questionPaperName, setQuestionPaperName] = useState("")
 	const [numberOfQuestions, setNumberOfQuestions] = useState(0)
 	const [firstFormSubmitted, setFirstFormSubmitted] = useState(false)
 	const [enteredQuestions, setEnteredQuestions] = useState(1)
@@ -45,9 +46,13 @@ export default function Create() {
 
 	const submitQuestionPaper = async () => {
 
+		const createdAt = timestamp.fromDate(new Date())
+
 		const questionPaper = {
 			questionsList,
-			createdBy: user.uid
+			createdBy: user.uid,
+			name : questionPaperName,
+			createdAt
 		}
 
 		try {
@@ -59,7 +64,10 @@ export default function Create() {
 			let qpArray = (await userRef.get()).data().questionPaperIDs
 
 
-			qpArray.push(addedQuestionPaper.id)
+			qpArray.push({id : addedQuestionPaper.id, 
+				name : questionPaperName,
+				createdAt
+			})
 			// adding currently created question paper ID in questionPaperIDs array in user document
 			await userRef.update({
 				questionPaperIDs: qpArray
@@ -80,6 +88,16 @@ export default function Create() {
 				{!firstFormSubmitted &&
 					<form className="create-form">
 						<label>
+							<span>Question paper name : </span>
+							<input
+								required
+								type="text"
+								onChange={(e) => setQuestionPaperName(e.target.value)}
+								value={questionPaperName}
+							/>
+						</label>
+
+						<label>
 							<span>Enter number of questions : </span>
 							<input
 								required
@@ -87,6 +105,7 @@ export default function Create() {
 								onChange={(e) => convertToNum(e.target.value)}
 								value={numberOfQuestions}
 								min={0}
+								className="numInput"
 							/>
 						</label>
 
