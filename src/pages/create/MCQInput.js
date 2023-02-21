@@ -38,7 +38,8 @@ function MCQInput(props) {
             const questionObject = {
                 question: question, 
                 options : optionsList, 
-                correctAnswer : correctAnswer
+                correctAnswer : correctAnswer,
+                qno : props.questionNumber
             }
 
             return [...prevList, questionObject]

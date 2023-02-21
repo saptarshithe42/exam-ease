@@ -12,12 +12,13 @@ function QuestionPaperList({ questions, deletePaper }) {
 	return (
 		<div className="question-list container">
 			<div className="row">
+			{/* <div> */}
 				{(questions.length != 0) &&
 
 					questions.map((questionPaper) => {
 
 						return (
-							<div key={questionPaper.id} className="col-lg-4 col-md-6" 
+							<div key={questionPaper.id} className="col" 
 							style={{display : "flex", 
 							justifyContent : "center",
 							padding : "2rem"}}>

@@ -11,7 +11,7 @@ import Navbar from "./components/Navbar";
 import Sidebar from "./components/Sidebar";
 import Create from "./pages/create/Create";
 import Exam from "./pages/exam/Exam";
-import QuestionPaper from "./question_paper/QuestionPaper";
+import QuestionPaper from "./pages/question_paper/QuestionPaper";
 
 
 function App() {

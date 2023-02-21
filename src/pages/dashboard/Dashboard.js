@@ -8,8 +8,6 @@ import './Dashboard.css'
 
 // components
 import Sidebar from "../../components/Sidebar";
-import QuestionPaperSelectBox from "../../components/QuestionPaperSelectBox";
-import QuestionViewComponent from "../../components/QuestionViewComponent";
 import QuestionPaperList from "../../components/QuestionPaperList";
 
 
