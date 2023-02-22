@@ -1,0 +1,21 @@
+.question-view .question{
+    /* text-align: left; */
+}
+
+.question-view{
+    background-color: white;
+    margin: 2rem;
+    text-align: left;
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.question-view .options{
+
+    margin: 1rem;
+}
+
+.question-view .options-list{
+    /* text-align: left; */
+}
