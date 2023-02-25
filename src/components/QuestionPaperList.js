@@ -28,6 +28,7 @@ function QuestionPaperList({ questions, deletePaper }) {
 										<Card.Title>{questionPaper.name}</Card.Title>
 										<Card.Text>
 											{formatDistanceToNow((questionPaper.createdAt).toDate(), { addSuffix: true })}
+											<p>Paper code : {questionPaper.id}</p>
 										</Card.Text>
 										<div style={{ display: "flex", justifyContent: "space-between" }}>
 											<Link to={`/questionpaper/${questionPaper.id}`} key={questionPaper.id}>

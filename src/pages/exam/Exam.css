@@ -1,0 +1,32 @@
+/* .exam {
+    flex-grow: 5;
+
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+
+    overflow: hidden;
+} */
+
+.exam form{
+    width: 100%;
+    text-align: center;
+}
+
+.exam .question-paper{
+    flex-grow: 5;
+
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+
+    overflow: hidden;
+}
+
+.exam .question-view-div
+{
+    width: 100%;
+    margin-left : 2rem;
+}

@@ -1,0 +1,13 @@
+.exam-sidebar-content{
+    
+}
+
+.question-selector-div{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.question-selector-div div:hover {
+    cursor: pointer;
+}
