@@ -82,8 +82,22 @@ function Exam() {
                         })
                     } */}
                     {questionPaper &&
-                        <div >
-                            {questionPaper.questionsList[questionSelected-1].question}
+                        <div>
+                            <div className="question-box">
+                               <p>({questionPaper.questionsList[questionSelected - 1].qno}) {questionPaper.questionsList[questionSelected - 1].question} </p>
+                            </div>
+
+                            {/* <div className="options-box container"> */}
+                            <div className="options-box">
+                                {/* <div className="row"> */}
+                                <div>
+                                    {questionPaper.questionsList[questionSelected - 1].options.map((option, index) => {
+                                        return (<div key={index} className="option">({index+1}) {option}</div>)
+                                    })}
+                                </div>
+                                <button className="save-btn">Save and Next</button>
+                            </div>
+
                         </div>
 
                     }
