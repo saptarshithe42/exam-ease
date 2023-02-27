@@ -1,13 +1,14 @@
-import React from 'react'
-import { useState } from 'react'
-import { projectFirestore } from '../../firebase/config'
-import { useAuthContext } from '../../hooks/useAuthContext'
+import React from "react"
+import { useState } from "react"
+import { projectFirestore } from "../../firebase/config"
+import { useAuthContext } from "../../hooks/useAuthContext"
 
 // styles
 import "./Exam.css"
 
 // components
-import ExamSidebar from './ExamSidebar'
+import ExamSidebar from "./ExamSidebar"
+
 
 function Exam() {
 
@@ -17,6 +18,8 @@ function Exam() {
     const [codeEntered, setCodeEntered] = useState(false)
 
     const [questionSelected, setQuestionSelected] = useState(1)
+    const [selectedOption, setSelectedOption] = useState(-1)
+    const activeOption = { backgroundColor: "yellow" }
 
     const { user } = useAuthContext()
 
@@ -84,7 +87,7 @@ function Exam() {
                     {questionPaper &&
                         <div>
                             <div className="question-box">
-                               <p>({questionPaper.questionsList[questionSelected - 1].qno}) {questionPaper.questionsList[questionSelected - 1].question} </p>
+                                ({questionPaper.questionsList[questionSelected - 1].qno}) {questionPaper.questionsList[questionSelected - 1].question}
                             </div>
 
                             {/* <div className="options-box container"> */}
@@ -92,10 +95,20 @@ function Exam() {
                                 {/* <div className="row"> */}
                                 <div>
                                     {questionPaper.questionsList[questionSelected - 1].options.map((option, index) => {
-                                        return (<div key={index} className="option">({index+1}) {option}</div>)
+                                        return (
+                                            <div key={index}
+                                                className="option"
+                                                onClick={() => setSelectedOption(index)}
+                                                style={selectedOption === (index) ? activeOption : null}
+                                            >
+                                                ({index + 1}) {option}
+                                            </div>)
                                     })}
                                 </div>
-                                <button className="save-btn">Save and Next</button>
+                                <div>
+                                    <button className="save-btn" onClick={() => setSelectedOption(-1)}>Clear Selection</button>
+                                    <button className="save-btn" >Save and Next</button>
+                                </div>
                             </div>
 
                         </div>

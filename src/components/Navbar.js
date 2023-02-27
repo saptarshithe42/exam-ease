@@ -34,13 +34,13 @@ function Navbar() {
     //     }
     //   </ul>
     // </div>
-    <nav class="navbar navbar-expand-md bg-body-tertiary">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="/">Exam Ease</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
+    <nav className="navbar navbar-expand-md bg-body-tertiary">
+      <div className="container-fluid">
+        <a className="navbar-brand" href="/">Exam Ease</a>
+        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span className="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+    <div className="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
         {!user &&
           <ul className="nav">
             <li className="nav-item btn btn-outline-primary"><Link to="/login">Login</Link></li>
