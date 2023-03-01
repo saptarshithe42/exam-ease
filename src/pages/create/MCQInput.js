@@ -1,6 +1,25 @@
 import React from 'react'
 import { useState } from 'react'
 
+function shuffle(array) {
+    let currentIndex = array.length, randomIndex;
+
+    // While there remain elements to shuffle.
+    while (currentIndex !== 0) {
+
+        // Pick a remaining element.
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex--;
+
+        // And swap it with the current element.
+        [array[currentIndex], array[randomIndex]] = [
+            array[randomIndex], array[currentIndex]];
+    }
+
+    return array;
+}
+
+
 function MCQInput(props) {
 
     const [question, setQuestion] = useState("")
@@ -34,12 +53,16 @@ function MCQInput(props) {
         props.updateQuestionCount(props.questionNumber + 1)
         props.updateQuestionList((prevList) => {
 
+            const temp = optionsList[0]
+            let index = Math.floor(Math.random() * (optionsList.length))
+            optionsList[0] = optionsList[index];
+            optionsList[index] = temp
 
             const questionObject = {
-                question: question, 
-                options : optionsList, 
-                correctAnswer : correctAnswer,
-                qno : props.questionNumber
+                question: question,
+                options: shuffle(optionsList),
+                correctAnswer: correctAnswer,
+                qno: props.questionNumber
             }
 
             return [...prevList, questionObject]
@@ -97,7 +120,7 @@ function MCQInput(props) {
                     />
                     <button onClick={addOption}>OK</button>
                 </label>}
-            {(optionsList.length > 1)  && !enterOption && <button onClick={handleSubmit}>Submit Question</button>}
+            {(optionsList.length > 1) && !enterOption && <button onClick={handleSubmit}>Submit Question</button>}
         </div>
     )
 }

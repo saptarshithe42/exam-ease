@@ -28,12 +28,13 @@ function QuestionPaper() {
 
   return (
     <div className="question-paper" >
-      <button onClick={handlePrint}>Print Question Paper</button>
+      <button onClick={handlePrint}>Download Paper</button>
 
       {questionPaper &&
         <div style={{textAlign : "center"}} ref={componentRef}>
           <h1 style={{marginTop : "2rem"}}>{questionPaper.name}</h1>
           <h5>Created By : {user.displayName}</h5>
+          <h6>Generated with : Exam Ease®</h6>
 
           {/* {!printPressed && <button onClick={printHandler}>Print Question Paper</button>} */}
 

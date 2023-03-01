@@ -8,6 +8,7 @@ import "./Exam.css"
 
 // components
 import ExamSidebar from "./ExamSidebar"
+import OptionsView from "./OptionsView"
 
 
 function Exam() {
@@ -19,7 +20,7 @@ function Exam() {
 
     const [questionSelected, setQuestionSelected] = useState(1)
     const [selectedOption, setSelectedOption] = useState(-1)
-    const activeOption = { backgroundColor: "yellow" }
+    // const activeOption = { backgroundColor: "yellow" }
 
     const { user } = useAuthContext()
 
@@ -93,7 +94,8 @@ function Exam() {
                             {/* <div className="options-box container"> */}
                             <div className="options-box">
                                 {/* <div className="row"> */}
-                                <div>
+                                {/* testing options shuffle */}
+                                {/* <div>
                                     {questionPaper.questionsList[questionSelected - 1].options.map((option, index) => {
                                         return (
                                             <div key={index}
@@ -104,7 +106,12 @@ function Exam() {
                                                 ({index + 1}) {option}
                                             </div>)
                                     })}
-                                </div>
+                                </div> */}
+                                <OptionsView 
+                                    options={questionPaper.questionsList[questionSelected - 1].options}
+                                    setSelectedOption={setSelectedOption}
+                                    selectedOption={selectedOption}
+                                />
                                 <div>
                                     <button className="save-btn" onClick={() => setSelectedOption(-1)}>Clear Selection</button>
                                     <button className="save-btn" >Save and Next</button>
