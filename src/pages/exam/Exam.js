@@ -18,11 +18,31 @@ function Exam() {
     const [questionPaper, setQuestionPaper] = useState(null)
     const [codeEntered, setCodeEntered] = useState(false)
 
-    const [questionSelected, setQuestionSelected] = useState(1)
+    // holds the question number of currently chosen question
+    const [questionSelected, setQuestionSelected] = useState(0)
+
+    // holds index of selected option of particular question
     const [selectedOption, setSelectedOption] = useState(-1)
     // const activeOption = { backgroundColor: "yellow" }
 
+    // contains index of the options selected (-1 for no selection)
+    const [answerMap, setAnswerMap] = useState(new Map())
+
     const { user } = useAuthContext()
+
+
+    const saveAnswer = () => {
+        setAnswerMap((prev) => {
+            let newMap = new Map(prev)
+            newMap.set(questionSelected, selectedOption)
+            return newMap
+        })
+        setSelectedOption(-1)
+        setQuestionSelected((prev) => {
+            return ((prev + 1) % (questionPaper.questionsList.length))
+        })
+        console.log(answerMap)
+    }
 
     const handleSubmit = async (e) => {
 
@@ -41,6 +61,7 @@ function Exam() {
             const data = docSnap.data()
             setQuestionPaper(data)
             console.log(data)
+            // console.log(answerList)
         }
         catch (err) {
             setError(err)
@@ -88,7 +109,7 @@ function Exam() {
                     {questionPaper &&
                         <div>
                             <div className="question-box">
-                                ({questionPaper.questionsList[questionSelected - 1].qno}) {questionPaper.questionsList[questionSelected - 1].question}
+                                ({questionPaper.questionsList[questionSelected].qno}) {questionPaper.questionsList[questionSelected].question}
                             </div>
 
                             {/* <div className="options-box container"> */}
@@ -108,13 +129,13 @@ function Exam() {
                                     })}
                                 </div> */}
                                 <OptionsView 
-                                    options={questionPaper.questionsList[questionSelected - 1].options}
+                                    options={questionPaper.questionsList[questionSelected].options}
                                     setSelectedOption={setSelectedOption}
                                     selectedOption={selectedOption}
                                 />
                                 <div>
                                     <button className="save-btn" onClick={() => setSelectedOption(-1)}>Clear Selection</button>
-                                    <button className="save-btn" >Save and Next</button>
+                                    <button className="save-btn" onClick={saveAnswer}>Save and Next</button>
                                 </div>
                             </div>
 
