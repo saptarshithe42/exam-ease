@@ -1,7 +1,6 @@
 .exam-sidebar-content{
-    
+    text-align: center;
 }
-
 .question-selector-div{
     display: flex;
     flex-direction: row;
@@ -10,4 +9,11 @@
 
 .question-selector-div div:hover {
     cursor: pointer;
+}
+
+.exam-sidebar-content .submit-btn{
+    width : 30%;
+    border-radius: 25px;
+    margin: 1rem;
+    overflow-wrap: break-word;
 }

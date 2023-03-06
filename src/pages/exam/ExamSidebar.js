@@ -1,6 +1,7 @@
 import React from 'react'
 import { useAuthContext } from '../../hooks/useAuthContext';
 import { useState } from 'react';
+import Countdown from 'react-countdown';
 
 // styles
 import "./ExamSidebar.css"
@@ -19,7 +20,7 @@ function ExamSidebar(props) {
 
     const { user } = useAuthContext()
 
-    const { numberOfQuestions, updateSelectedQuestion } = props
+    const { numberOfQuestions, updateSelectedQuestion, answerMap, submitAnswer} = props
 
     var questionNumberArr = Array.from(Array(numberOfQuestions).fill(), (_, i) => {
         return {
@@ -37,9 +38,9 @@ function ExamSidebar(props) {
             }
         }
     });
-    console.log(questionNumberArr)
 
-    console.log("questions : " + numberOfQuestions);
+    // console.log(questionNumberArr)
+    // console.log("questions : " + numberOfQuestions);
 
     const [sidebarCollapsed, setSidebarCollapsed] = useState(false)
     const [questionSelected, setQuestionSelected] = useState(1)
@@ -65,11 +66,13 @@ function ExamSidebar(props) {
                     
                         <div className="question-selector-div">
                         {questionNumberArr.map((question) => {
-                            return (<div style={question.style} 
-                            onClick={() => updateSelectedQuestion(question.sno)}>
+                            return (<div style={question.style} key={question.sno} 
+                            onClick={() => updateSelectedQuestion(question.sno-1)}>
                             {question.sno}</div>)
                         })}
                     </div>}
+                    {!sidebarCollapsed && 
+                    <button className="submit-btn" onClick={submitAnswer}>Submit</button>}
                 </CDBSidebarContent>
             </CDBSidebar>
         </div>

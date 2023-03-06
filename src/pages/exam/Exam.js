@@ -30,6 +30,17 @@ function Exam() {
 
     const { user } = useAuthContext()
 
+    const clearSelection = () => {
+        setSelectedOption(-1)
+
+        setAnswerMap((prev) => {
+            let newMap = new Map(prev)
+            newMap.set(questionSelected, -1)
+            return newMap
+        })
+    }
+
+    console.log("exam.js rendered")
 
     const saveAnswer = () => {
         setAnswerMap((prev) => {
@@ -60,12 +71,36 @@ function Exam() {
 
             const data = docSnap.data()
             setQuestionPaper(data)
-            console.log(data)
+            // console.log(data)
             // console.log(answerList)
         }
         catch (err) {
             setError(err)
             setQuestionPaper(null)
+            console.log(err)
+        }
+    }
+
+    const submitAnswer = () => {
+        let count = 0
+        let questionArr = questionPaper.questionsList
+        answerMap.forEach((key) => {
+            let optionArr = questionArr[key].options
+
+            if(optionArr[answerMap.get(key)] === questionArr[key].correctAnswer)
+            {
+                count += 1
+            }
+        })
+
+        console.log("count = " + count)
+
+        try{
+            //
+            
+        }
+        catch(err)
+        {
             console.log(err)
         }
     }
@@ -91,6 +126,8 @@ function Exam() {
                     <ExamSidebar
                         numberOfQuestions={questionPaper.questionsList.length}
                         updateSelectedQuestion={setQuestionSelected}
+                        answerMap={answerMap}
+                        submitAnswer={submitAnswer}
                     />}
 
                 <div className="question-view-div">
@@ -132,9 +169,11 @@ function Exam() {
                                     options={questionPaper.questionsList[questionSelected].options}
                                     setSelectedOption={setSelectedOption}
                                     selectedOption={selectedOption}
+                                    answerMap={answerMap}
+                                    qno={questionSelected}
                                 />
                                 <div>
-                                    <button className="save-btn" onClick={() => setSelectedOption(-1)}>Clear Selection</button>
+                                    <button className="save-btn" onClick={clearSelection}>Clear Selection</button>
                                     <button className="save-btn" onClick={saveAnswer}>Save and Next</button>
                                 </div>
                             </div>
