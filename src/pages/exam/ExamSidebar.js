@@ -1,7 +1,7 @@
 import React from 'react'
 import { useAuthContext } from '../../hooks/useAuthContext';
 import { useState } from 'react';
-import Countdown from 'react-countdown';
+import { useMemo } from 'react';
 
 // styles
 import "./ExamSidebar.css"
@@ -15,12 +15,13 @@ import {
     CDBSidebarMenuItem,
 } from 'cdbreact';
 import { NavLink } from 'react-router-dom';
+import Countdown from './Countdown';
 
 function ExamSidebar(props) {
 
     const { user } = useAuthContext()
 
-    const { numberOfQuestions, updateSelectedQuestion, answerMap, submitAnswer} = props
+    const { numberOfQuestions, updateSelectedQuestion, answerMap, submitAnswer, time} = props
 
     var questionNumberArr = Array.from(Array(numberOfQuestions).fill(), (_, i) => {
         return {
@@ -60,6 +61,11 @@ function ExamSidebar(props) {
                     >
                         {user.displayName}
                     </a>
+                    <br />
+                    <Countdown 
+                        examDuration={time}
+                        onTimerEnd={submitAnswer}
+                    />
                 </CDBSidebarHeader>
                 <CDBSidebarContent className="exam-sidebar-content">
                     {!sidebarCollapsed && 

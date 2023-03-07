@@ -11,6 +11,7 @@ import "./Create.css"
 // components
 import MCQInput from './MCQInput'
 import Sidebar from '../../components/Sidebar'
+import { setMinutes } from 'date-fns'
 
 
 
@@ -21,12 +22,17 @@ export default function Create() {
 
 	const [questionPaperName, setQuestionPaperName] = useState("")
 	const [numberOfQuestions, setNumberOfQuestions] = useState(0)
+	const [minutes, setMinutes] = useState(0)
 	const [firstFormSubmitted, setFirstFormSubmitted] = useState(false)
 	const [enteredQuestions, setEnteredQuestions] = useState(1)
 	const [questionsList, setQuestionsList] = useState([])
 
 	const convertToNum = (numString) => {
 		setNumberOfQuestions(parseInt(numString))
+	}
+
+	const convertToSec = (minString) => {
+		setMinutes(parseInt(minString))
 	}
 
 	const submitFirstForm = (e) => {
@@ -52,7 +58,8 @@ export default function Create() {
 			questionsList,
 			createdBy: user.uid,
 			name : questionPaperName,
-			createdAt
+			createdAt,
+			seconds: (minutes * 60)
 		}
 
 		try {
@@ -104,6 +111,18 @@ export default function Create() {
 								type="Number"
 								onChange={(e) => convertToNum(e.target.value)}
 								value={numberOfQuestions}
+								min={0}
+								className="numInput"
+							/>
+						</label>
+
+						<label>
+							<span>Enter time in minutes : </span>
+							<input
+								required
+								type="Number"
+								onChange={(e) => convertToSec(e.target.value)}
+								value={minutes}
 								min={0}
 								className="numInput"
 							/>

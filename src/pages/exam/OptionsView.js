@@ -8,7 +8,7 @@ function OptionsView(props) {
 
     const activeOption = { backgroundColor: "yellow" }
 
-    console.log("OptionsView.js rendered")
+    // console.log("OptionsView.js rendered")
 
     return (
         <div>

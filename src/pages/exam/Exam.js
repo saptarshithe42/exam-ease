@@ -2,6 +2,8 @@ import React from "react"
 import { useState } from "react"
 import { projectFirestore } from "../../firebase/config"
 import { useAuthContext } from "../../hooks/useAuthContext"
+import { useHistory } from "react-router-dom"
+import { useMemo } from "react"
 
 // styles
 import "./Exam.css"
@@ -13,15 +15,16 @@ import OptionsView from "./OptionsView"
 
 function Exam() {
 
+    const history = useHistory()
     const [questionPaperCode, setQuestionPaperCode] = useState("")
     const [error, setError] = useState(null)
     const [questionPaper, setQuestionPaper] = useState(null)
     const [codeEntered, setCodeEntered] = useState(false)
 
-    // holds the question number of currently chosen question
+    // holds the question number (index) of currently chosen question
     const [questionSelected, setQuestionSelected] = useState(0)
 
-    // holds index of selected option of particular question
+    // holds index of selected option of particular question (-1 for no selection)
     const [selectedOption, setSelectedOption] = useState(-1)
     // const activeOption = { backgroundColor: "yellow" }
 
@@ -29,6 +32,8 @@ function Exam() {
     const [answerMap, setAnswerMap] = useState(new Map())
 
     const { user } = useAuthContext()
+
+    
 
     const clearSelection = () => {
         setSelectedOption(-1)
@@ -40,7 +45,7 @@ function Exam() {
         })
     }
 
-    console.log("exam.js rendered")
+    // console.log("exam.js rendered")
 
     const saveAnswer = () => {
         setAnswerMap((prev) => {
@@ -84,16 +89,19 @@ function Exam() {
     const submitAnswer = () => {
         let count = 0
         let questionArr = questionPaper.questionsList
-        answerMap.forEach((key) => {
-            let optionArr = questionArr[key].options
-
-            if(optionArr[answerMap.get(key)] === questionArr[key].correctAnswer)
+        console.log(answerMap)
+        questionArr.map((question, index) => {
+            let optionArr = question.options
+            let correctAnswer = question.correctAnswer
+            if(answerMap.has(index) && (optionArr[answerMap.get(index)] === correctAnswer))
             {
                 count += 1
             }
         })
 
         console.log("count = " + count)
+        history.push("/")
+
 
         try{
             //
@@ -128,6 +136,7 @@ function Exam() {
                         updateSelectedQuestion={setQuestionSelected}
                         answerMap={answerMap}
                         submitAnswer={submitAnswer}
+                        time={questionPaper.seconds}
                     />}
 
                 <div className="question-view-div">
