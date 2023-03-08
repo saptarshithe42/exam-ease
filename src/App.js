@@ -12,6 +12,7 @@ import Sidebar from "./components/Sidebar";
 import Create from "./pages/create/Create";
 import Exam from "./pages/exam/Exam";
 import QuestionPaper from "./pages/question_paper/QuestionPaper";
+import TestHistory from "./pages/history/TestHistory";
 
 
 function App() {
@@ -66,6 +67,15 @@ function App() {
               <Route path="/questionpaper/:id">
                 {!user && <Redirect to="/login" />}
                 {user && <QuestionPaper />}
+              </Route>
+
+              <Route exact path="/history">
+                {!user && <Redirect to="/login" />}
+                <div style={{ display: "flex", flexDirection: "row", height: "100%",
+                backgroundColor: "#b0f59d" }}>
+                  {/* {user && <Sidebar />} */}
+                  {user && <TestHistory />}
+                </div>
               </Route>
 
             </Switch>

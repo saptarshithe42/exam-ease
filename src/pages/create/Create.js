@@ -54,12 +54,19 @@ export default function Create() {
 
 		const createdAt = timestamp.fromDate(new Date())
 
+		let totalMarks = 0
+
+		questionsList.forEach((question) => {
+			totalMarks += Number(question.marks)
+		})
+
 		const questionPaper = {
 			questionsList,
 			createdBy: user.uid,
 			name : questionPaperName,
 			createdAt,
-			seconds: (minutes * 60)
+			seconds: (minutes * 60),
+			totalMarks
 		}
 
 		try {

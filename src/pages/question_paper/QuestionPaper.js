@@ -34,6 +34,7 @@ function QuestionPaper() {
         <div style={{textAlign : "center"}} ref={componentRef}>
           <h1 style={{marginTop : "2rem"}}>{questionPaper.name}</h1>
           <h5>Created By : {user.displayName}</h5>
+          <h5>Full Marks : {questionPaper.totalMarks}</h5>
           <h5>Time : {(questionPaper.seconds) / 60} minutes</h5>
           <h6>Generated with : Exam Ease®</h6>
 

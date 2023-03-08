@@ -46,7 +46,8 @@ export const useSignup = () => {
                 online : true,
                 displayName,
                 photoURL : imgUrl,
-                questionPaperIDs : []
+                questionPaperIDs : [],
+                testHistory : []
             })
 
             // dispatch login action

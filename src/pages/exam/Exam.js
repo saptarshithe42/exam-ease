@@ -1,6 +1,6 @@
 import React from "react"
 import { useState } from "react"
-import { projectFirestore } from "../../firebase/config"
+import { projectFirestore, timestamp } from "../../firebase/config"
 import { useAuthContext } from "../../hooks/useAuthContext"
 import { useHistory } from "react-router-dom"
 import { useMemo } from "react"
@@ -86,8 +86,11 @@ function Exam() {
         }
     }
 
-    const submitAnswer = () => {
+    const submitAnswer = async () => {
+
+        const attemptedAt = timestamp.fromDate(new Date())
         let count = 0
+        let marksObtained = 0
         let questionArr = questionPaper.questionsList
         console.log(answerMap)
         questionArr.map((question, index) => {
@@ -96,21 +99,43 @@ function Exam() {
             if(answerMap.has(index) && (optionArr[answerMap.get(index)] === correctAnswer))
             {
                 count += 1
+                marksObtained += question.marks
             }
         })
 
         console.log("count = " + count)
-        history.push("/")
-
+        console.log("marks obtained : " + marksObtained)
+        
 
         try{
-            //
+			const userRef = projectFirestore.collection("users").doc(user.uid);
+
+			let testArray = (await userRef.get()).data().testHistory
+
+
+			testArray.push({
+                id : questionPaperCode, 
+				name : questionPaper.name,
+				attemptedAt,
+                marksObtained,
+                totalMarks : questionPaper.totalMarks,
+                correctlySolved : count,
+                totalQuestions : questionArr.length
+			})
+
+            console.log(testArray);
+
+			await userRef.update({
+				testHistory : testArray
+			})
             
         }
         catch(err)
         {
             console.log(err)
         }
+
+        history.push("/")
     }
 
     return (
@@ -155,25 +180,11 @@ function Exam() {
                     {questionPaper &&
                         <div>
                             <div className="question-box">
-                                ({questionPaper.questionsList[questionSelected].qno}) {questionPaper.questionsList[questionSelected].question}
+                                ({questionPaper.questionsList[questionSelected].qno}) {questionPaper.questionsList[questionSelected].question} <b>[Marks : {questionPaper.questionsList[questionSelected].marks}]</b>
                             </div>
 
                             {/* <div className="options-box container"> */}
                             <div className="options-box">
-                                {/* <div className="row"> */}
-                                {/* testing options shuffle */}
-                                {/* <div>
-                                    {questionPaper.questionsList[questionSelected - 1].options.map((option, index) => {
-                                        return (
-                                            <div key={index}
-                                                className="option"
-                                                onClick={() => setSelectedOption(index)}
-                                                style={selectedOption === (index) ? activeOption : null}
-                                            >
-                                                ({index + 1}) {option}
-                                            </div>)
-                                    })}
-                                </div> */}
                                 <OptionsView 
                                     options={questionPaper.questionsList[questionSelected].options}
                                     setSelectedOption={setSelectedOption}

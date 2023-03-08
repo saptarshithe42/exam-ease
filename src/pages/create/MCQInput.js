@@ -23,6 +23,7 @@ function shuffle(array) {
 function MCQInput(props) {
 
     const [question, setQuestion] = useState("")
+    const [marks, setMarks] = useState(5)
     const [questionEntered, setQuestionEntered] = useState(false)
     const [option, setOption] = useState("")
     const [enterOption, setEnterOption] = useState(false)
@@ -62,7 +63,8 @@ function MCQInput(props) {
                 question: question,
                 options: shuffle(optionsList),
                 correctAnswer: correctAnswer,
-                qno: props.questionNumber
+                qno: props.questionNumber,
+                marks : Number(marks)
             }
 
             return [...prevList, questionObject]
@@ -82,15 +84,28 @@ function MCQInput(props) {
         <div>
             {questionEntered && <div>{question}</div>}
             {!questionEntered &&
-                <label>
-                    <span>{props.questionNumber}Enter Question : </span>
-                    <textarea
-                        required
-                        onChange={(e) => setQuestion(e.target.value)}
-                        value={question}
-                    ></textarea>
+                <div>
+                    <label>
+                        <span>{props.questionNumber}Enter Question : </span>
+                        <textarea
+                            required
+                            onChange={(e) => setQuestion(e.target.value)}
+                            value={question}
+                        ></textarea>
+
+                    </label>
+                    <br />
+                    <label>
+                        <span>Enter Marks : </span>
+                        <input
+                            required
+                            type="number"
+                            onChange={(e) => setMarks(e.target.value)}
+                            value={marks}
+                        ></input>
+                    </label>
                     <button onClick={() => { setQuestionEntered(true) }} className="btn btn-primary">Add question</button>
-                </label>
+                </div>
             }
 
             {!enteredCorrectAnswer && questionEntered &&
