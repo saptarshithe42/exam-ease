@@ -1,6 +1,5 @@
 import React from 'react'
 import { useState } from 'react'
-import { useFirestore } from '../../hooks/useFireStore'
 import { useAuthContext } from '../../hooks/useAuthContext'
 import { useHistory } from 'react-router-dom'
 import { projectFirestore, timestamp } from '../../firebase/config'
@@ -11,7 +10,7 @@ import "./Create.css"
 // components
 import MCQInput from './MCQInput'
 import Sidebar from '../../components/Sidebar'
-import { setMinutes } from 'date-fns'
+
 
 
 
@@ -146,7 +145,6 @@ export default function Create() {
 							questionNumber={enteredQuestions}
 							updateQuestionCount={setEnteredQuestions}
 						/>
-						{/* <button onClick={updateQuestionCount}>OK</button> */}
 					</div>
 				}
 				{

@@ -33,10 +33,6 @@ export default function TestHistory() {
 
 	return (
 		<div className="dashboard">
-
-			{/* <div className="row">
-				{user && <Sidebar />}
-			</div> */}
 			{user && <Sidebar />}
 			<div className="question-div">
 				{(testHistoryArray.length != 0) && 

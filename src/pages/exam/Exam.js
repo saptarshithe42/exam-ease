@@ -165,25 +165,12 @@ function Exam() {
                     />}
 
                 <div className="question-view-div">
-                    {/* {questionPaper &&
-                        questionPaper.questionsList.map((question) => {
-                            return (<div key={question}>
-                                {question.question}
-                                <div> {question.options.map((option) => {
-
-                                    return (<div key={option}>{option}</div>)
-
-                                })} </div>
-                            </div>)
-                        })
-                    } */}
                     {questionPaper &&
                         <div>
                             <div className="question-box">
                                 ({questionPaper.questionsList[questionSelected].qno}) {questionPaper.questionsList[questionSelected].question} <b>[Marks : {questionPaper.questionsList[questionSelected].marks}]</b>
                             </div>
 
-                            {/* <div className="options-box container"> */}
                             <div className="options-box">
                                 <OptionsView 
                                     options={questionPaper.questionsList[questionSelected].options}

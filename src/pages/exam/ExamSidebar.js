@@ -52,8 +52,6 @@ function ExamSidebar(props) {
         >
             <CDBSidebar textColor="#fff" backgroundColor="#333" toggled={sidebarCollapsed}>
                 <CDBSidebarHeader prefix={<i className="fa fa-bars fa-large" onClick={() => setSidebarCollapsed(!sidebarCollapsed)}></i>}>
-                {/* <CDBSidebarHeader prefix={<i className="fa fa-bars fa-large"></i>}> */}
-                {/* <CDBSidebarHeader> */}
                     <a
                         href="/"
                         className="text-decoration-none"

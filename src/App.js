@@ -8,7 +8,6 @@ import Dashboard from "./pages/dashboard/Dashboard";
 import Login from "./pages/login/Login";
 import Signup from "./pages/signup/Signup";
 import Navbar from "./components/Navbar";
-import Sidebar from "./components/Sidebar";
 import Create from "./pages/create/Create";
 import Exam from "./pages/exam/Exam";
 import QuestionPaper from "./pages/question_paper/QuestionPaper";
@@ -21,20 +20,17 @@ function App() {
 
 
   return (
-    // <div className="app-div">
+
     <div className="App">
       {authIsReady &&
         <BrowserRouter>
           <Navbar />
-          {/* <div style={{display : "flex", flexDirection : "row", height : "100%"}}> */}
-          {/* <div style={{ height: "90%" }}> */}
           <div>
             <Switch>
               <Route exact path="/">
                 {!user && <Redirect to="/login" />}
                 <div style={{ display: "flex", flexDirection: "row", height: "100%",
                 backgroundColor: "#b0f59d" }}>
-                  {/* {user && <Sidebar />} */}
                   {user && <Dashboard />}
                 </div>
               </Route>
@@ -56,7 +52,6 @@ function App() {
                 backgroundColor: "#b0f59d" }}>
                   {user && <Create />}
                 </div>
-                {/* {user && <Create />} */}
               </Route>
 
               <Route path="/exam">
@@ -73,7 +68,6 @@ function App() {
                 {!user && <Redirect to="/login" />}
                 <div style={{ display: "flex", flexDirection: "row", height: "100%",
                 backgroundColor: "#b0f59d" }}>
-                  {/* {user && <Sidebar />} */}
                   {user && <TestHistory />}
                 </div>
               </Route>

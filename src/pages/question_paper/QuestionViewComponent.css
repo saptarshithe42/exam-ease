@@ -1,8 +1,4 @@
-.question-view .question{
-    /* text-align: left; */
-}
-
-.question-view{
+.question-view {
     background-color: white;
     margin: 2rem;
     text-align: left;
@@ -11,11 +7,7 @@
     margin-right: auto;
 }
 
-.question-view .options{
+.question-view .options {
 
     margin: 1rem;
-}
-
-.question-view .options-list{
-    /* text-align: left; */
 }
