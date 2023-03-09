@@ -10,6 +10,7 @@ import "./Create.css"
 // components
 import MCQInput from './MCQInput'
 import Sidebar from '../../components/Sidebar'
+import QuestionViewComponent from '../question_paper/QuestionViewComponent'
 
 
 
@@ -85,6 +86,16 @@ export default function Create() {
 			await userRef.update({
 				questionPaperIDs: qpArray
 			})
+
+			// adding an empty report entry corresponding to the question paper with same id as question paper
+			const report_entry = {
+				name : questionPaperName,
+				score_sheet : [],
+				totalMarks,
+				totalQuestions : questionsList.length
+			}
+
+			await projectFirestore.collection("reports").doc(addedQuestionPaper.id).set(report_entry)
 		}
 		catch (error) {
 			console.log("Could not update documents.")
@@ -150,18 +161,15 @@ export default function Create() {
 				{
 					<div>
 						<div>
-							Entered questions :-
+							
 							{
 								questionsList.map((question) => {
-									return (
-										<div key={Math.random()}>
-											{question.question}
-											{question.options}
-										</div>
-									)
+									return (<div key={question.qno} className="question-box"> <QuestionViewComponent question={question} /> </div>)
 								})}
 						</div>
-						<button onClick={submitQuestionPaper} className="btn btn-primary">Submit</button>
+						<button onClick={submitQuestionPaper} 
+						className="btn btn-primary submit-btn"
+						>Submit</button>
 					</div>
 				}
 			</div>

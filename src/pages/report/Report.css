@@ -1,0 +1,23 @@
+.report{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    /* align-items: center; */
+    font-size: 1.3rem;
+}
+
+.report table, th, td{
+    border: 1px;
+    border-color: black;
+    border-style:solid;
+}
+
+.report th, td{
+    padding : 1.5rem;
+}
+
+.table-div{
+    display: flex;
+    justify-content: center;
+    overflow-x:auto;
+}

@@ -17,6 +17,8 @@ function Exam() {
 
     const history = useHistory()
     const [questionPaperCode, setQuestionPaperCode] = useState("")
+    const [name, setName] = useState("")
+    const [rollno, setRollno] = useState("")
     const [error, setError] = useState(null)
     const [questionPaper, setQuestionPaper] = useState(null)
     const [codeEntered, setCodeEntered] = useState(false)
@@ -112,6 +114,7 @@ function Exam() {
 
 			let testArray = (await userRef.get()).data().testHistory
 
+            // update student document for informing report to student
 
 			testArray.push({
                 id : questionPaperCode, 
@@ -128,6 +131,24 @@ function Exam() {
 			await userRef.update({
 				testHistory : testArray
 			})
+
+            // update report document corresponding to question paper for showing report to paper setter
+
+            const reportRef = projectFirestore.collection("reports").doc(questionPaperCode);
+
+			let scoreArr = (await reportRef.get()).data().score_sheet
+
+			scoreArr.push({
+                id : user.uid,
+				name,
+                rollno,
+                marksObtained,
+                correctlySolved : count
+			})
+
+			await reportRef.update({
+				score_sheet : scoreArr
+			})
             
         }
         catch(err)
@@ -140,7 +161,7 @@ function Exam() {
 
     return (
         <div className="exam">
-            {!codeEntered && <form>
+            {!codeEntered && <form className="exam-form">
                 <label>
                     <span>Enter question paper code : </span>
                     <input
@@ -150,7 +171,25 @@ function Exam() {
                         value={questionPaperCode}
                     />
                 </label>
-                <button onClick={handleSubmit}>Submit</button>
+                <label>
+                    <span>Enter Name : </span>
+                    <input
+                        required
+                        type="text"
+                        onChange={(e) => setName(e.target.value)}
+                        value={name}
+                    />
+                </label>
+                <label>
+                    <span>Enter Roll number : </span>
+                    <input
+                        required
+                        type="text"
+                        onChange={(e) => setRollno(e.target.value)}
+                        value={rollno}
+                    />
+                </label>
+                <button onClick={handleSubmit} className="btn btn-primary">Submit</button>
             </form>}
             {error && <div>{error}</div>}
 

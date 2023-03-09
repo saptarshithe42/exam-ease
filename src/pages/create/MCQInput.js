@@ -81,16 +81,17 @@ function MCQInput(props) {
 
 
     return (
-        <div>
+        <div className="mcq-input">
             {questionEntered && <div>{question}</div>}
             {!questionEntered &&
-                <div>
+                <div className="mcq-input">
                     <label>
-                        <span>{props.questionNumber}Enter Question : </span>
+                        <div style={{margin : "1rem"}}>({props.questionNumber})  Enter Question : </div>
                         <textarea
                             required
                             onChange={(e) => setQuestion(e.target.value)}
                             value={question}
+                            style={{borderRadius : "12px"}}
                         ></textarea>
 
                     </label>
@@ -102,27 +103,38 @@ function MCQInput(props) {
                             type="number"
                             onChange={(e) => setMarks(e.target.value)}
                             value={marks}
+                            style={{width : "15%", borderRadius : "10px"}}
                         ></input>
                     </label>
-                    <button onClick={() => { setQuestionEntered(true) }} className="btn btn-primary">Add question</button>
+                    <button onClick={() => { setQuestionEntered(true) }} 
+                    className="btn btn-primary"
+                    style={{marginLeft : "auto", marginRight:"auto", width:"35%", marginTop : "1rem"}}>
+                    Add question</button>
                 </div>
             }
 
             {!enteredCorrectAnswer && questionEntered &&
-                <label>
+                <label style={{width : "75%"}}>
                     <span>Enter correct answer : </span>
                     <input
                         required
                         type="text"
                         onChange={(e) => setCorrectAnswer(e.target.value)}
                         value={correctAnswer}
+                        style={{width : "40%"}}
                     />
-                    <button onClick={addCorrectAnswer} className="btn btn-primary">OK</button>
+                    <button onClick={addCorrectAnswer} 
+                    className="btn btn-primary"
+                    style={{width : "20%", marginLeft : "0.2rem"}}
+                    >OK</button>
                 </label>
             }
             {questionEntered && !enterOption && enteredCorrectAnswer &&
 
-                <button onClick={() => setEnterOption(true)} >Add other option</button>
+                <button onClick={() => setEnterOption(true)} 
+                className="btn btn-primary"
+                style={{margin: "1rem auto"}}
+                >Add other option</button>
             }
             {enterOption &&
                 <label>
@@ -133,9 +145,14 @@ function MCQInput(props) {
                         onChange={(e) => setOption(e.target.value)}
                         value={option}
                     />
-                    <button onClick={addOption}>OK</button>
+                    <button onClick={addOption}
+                    className="btn btn-primary"
+                    >OK</button>
                 </label>}
-            {(optionsList.length > 1) && !enterOption && <button onClick={handleSubmit}>Submit Question</button>}
+            {(optionsList.length > 1) && !enterOption && 
+            <button onClick={handleSubmit}
+            className="btn btn-primary submit-btn"
+            >Submit Question</button>}
         </div>
     )
 }

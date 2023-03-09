@@ -35,9 +35,13 @@ export default function Dashboard() {
 
 		try {
 			const questionsRef = projectFirestore.collection("question_papers")
+			const reportRef = projectFirestore.collection("reports")
 
 			// deleting the question paper
 			await questionsRef.doc(id).delete()
+			// deleting corresponding report entry
+			await reportRef.doc(id).delete()
+			
 
 			const userRef = projectFirestore.collection("users").doc(user.uid)
 

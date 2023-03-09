@@ -9,10 +9,22 @@
     overflow: hidden;
 } */
 
-.exam form {
+.exam-form {
     width: 100%;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
+
+.exam-form label{
+    width: 30%;
+    margin: 1rem;
+    text-align: left;
+}
+
+
 
 .exam .question-paper {
     flex-grow: 5;

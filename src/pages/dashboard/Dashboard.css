@@ -8,6 +8,7 @@
   width: 30%;
   
   overflow: hidden;
+  background-image: linear-gradient(to bottom right, rgb(255, 179, 58) , rgba(59, 140, 165, 0.773));
 }
 
 .question-div

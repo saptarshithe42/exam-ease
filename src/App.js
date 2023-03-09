@@ -12,6 +12,7 @@ import Create from "./pages/create/Create";
 import Exam from "./pages/exam/Exam";
 import QuestionPaper from "./pages/question_paper/QuestionPaper";
 import TestHistory from "./pages/history/TestHistory";
+import Report from "./pages/report/Report";
 
 
 function App() {
@@ -30,7 +31,8 @@ function App() {
               <Route exact path="/">
                 {!user && <Redirect to="/login" />}
                 <div style={{ display: "flex", flexDirection: "row", height: "100%",
-                backgroundColor: "#b0f59d" }}>
+                // backgroundColor: "#b0f59d" }}>
+                }}>
                   {user && <Dashboard />}
                 </div>
               </Route>
@@ -49,7 +51,7 @@ function App() {
               <Route path="/create">
                 {!user && <Redirect to="/login" />}
                 <div style={{ display: "flex", flexDirection: "row", height: "100%",
-                backgroundColor: "#b0f59d" }}>
+                }}>
                   {user && <Create />}
                 </div>
               </Route>
@@ -70,6 +72,11 @@ function App() {
                 backgroundColor: "#b0f59d" }}>
                   {user && <TestHistory />}
                 </div>
+              </Route>
+
+              <Route path="/reports/:id">
+                {!user && <Redirect to="/login" />}
+                {user && <Report />}
               </Route>
 
             </Switch>

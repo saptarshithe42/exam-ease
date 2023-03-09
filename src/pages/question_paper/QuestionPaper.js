@@ -25,7 +25,7 @@ function QuestionPaper() {
 
 
   return (
-    <div className="question-paper" >
+    <div className="report" >
       <button onClick={handlePrint}>Download Paper</button>
 
       {questionPaper &&

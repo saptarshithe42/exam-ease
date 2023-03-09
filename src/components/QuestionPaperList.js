@@ -34,6 +34,10 @@ function QuestionPaperList({ questions, deletePaper }) {
 											<Link to={`/questionpaper/${questionPaper.id}`} key={questionPaper.id}>
 												<Button variant="primary">View</Button>
 											</Link>
+
+											<Link to={`/reports/${questionPaper.id}`} key={questionPaper.id}>
+												<Button variant="primary">Analysis</Button>
+											</Link>
 											<Button variant="primary" onClick={() => deletePaper(questionPaper.id)}>Delete</Button>
 										</div>
 									</Card.Body>
