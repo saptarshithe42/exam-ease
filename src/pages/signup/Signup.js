@@ -9,47 +9,13 @@ export default function Signup() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [displayName, setDisplayName] = useState('')
-  const [thumbnail, setThumbnail] = useState(null)
-  const [thumbnailError, setThumbnailError] = useState(null)
   const {signup, isPending, error} = useSignup()
 
   const handleSubmit = (e) => {
     e.preventDefault()
 
-    signup(email, password, displayName, thumbnail)
+    signup(email, password, displayName)
   }
-
-
-  const handleFileChange = (e) => {
-
-    // to reset any selected image
-    setThumbnail(null)
-
-    let selected = e.target.files[0]  // selecting first element of array of files
-    console.log(selected)
-
-    if (!selected) {
-      setThumbnailError("Please select a file")
-      return
-    }
-
-    if (!selected.type.includes("image")) {
-      setThumbnailError("selected file must be an image")
-      return
-    }
-
-    if (selected.size > 100000) {
-      setThumbnailError("Image file size must be less than 100kb")
-      return
-    }
-
-    // in case of no error
-    setThumbnailError(null)
-
-    setThumbnail(selected)
-    console.log("thumbnail updated")
-  }
-
 
 
   return (
@@ -84,17 +50,6 @@ export default function Signup() {
           onChange={(e) => setDisplayName(e.target.value)}
           value={displayName}
         />
-      </label>
-
-
-      <label>
-        <span>profile thumbnail:</span>
-        <input
-          required
-          type="file"
-          onChange={handleFileChange}
-        />
-        {thumbnailError && <div className="error">{thumbnailError}</div>}
       </label>
 
       {!isPending && <button className="btn btn-outline-success">Sign up</button>}

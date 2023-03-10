@@ -21,7 +21,7 @@ function ExamSidebar(props) {
 
     const { user } = useAuthContext()
 
-    const { numberOfQuestions, updateSelectedQuestion, answerMap, submitAnswer, time} = props
+    const { numberOfQuestions, updateSelectedQuestion, answerMap, submitAnswer, time } = props
 
     var questionNumberArr = Array.from(Array(numberOfQuestions).fill(), (_, i) => {
         return {
@@ -32,10 +32,9 @@ function ExamSidebar(props) {
                 borderRadius: "100%",
                 width: "10%",
                 textAlign: "center",
-                height : "10%",
+                height: "10%",
                 border: "1rem",
-                borderColor : "white"
-
+                borderColor: "white",
             }
         }
     });
@@ -60,23 +59,24 @@ function ExamSidebar(props) {
                         {user.displayName}
                     </a>
                     <br />
-                    <Countdown 
+                    <Countdown
                         examDuration={time}
                         onTimerEnd={submitAnswer}
                     />
                 </CDBSidebarHeader>
                 <CDBSidebarContent className="exam-sidebar-content">
-                    {!sidebarCollapsed && 
-                    
+                    {!sidebarCollapsed &&
+
                         <div className="question-selector-div">
-                        {questionNumberArr.map((question) => {
-                            return (<div style={question.style} key={question.sno} 
-                            onClick={() => updateSelectedQuestion(question.sno-1)}>
-                            {question.sno}</div>)
-                        })}
-                    </div>}
-                    {!sidebarCollapsed && 
-                    <button className="submit-btn" onClick={submitAnswer}>Submit</button>}
+                            {questionNumberArr.map((question) => {
+                                return (<div style={question.style} key={question.sno}
+                                    onClick={() => updateSelectedQuestion(question.sno - 1)}>
+                                    {question.sno}</div>)
+                            })}
+                        </div>
+                    }
+                    {!sidebarCollapsed &&
+                        <button className="submit-btn" onClick={submitAnswer}>Submit</button>}
                 </CDBSidebarContent>
             </CDBSidebar>
         </div>

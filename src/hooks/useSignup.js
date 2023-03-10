@@ -9,7 +9,7 @@ export const useSignup = () => {
     const [isPending, setIsPending] = useState(false)
     const { dispatch } = useAuthContext()
 
-    const signup = async (email, password, displayName, thumbnail) => {
+    const signup = async (email, password, displayName) => {
 
         setError(null)
         setIsPending(true)
@@ -23,17 +23,9 @@ export const useSignup = () => {
                 throw new Error("Could not complete signup")
             }
 
-            // upload user thumbnail
-            // folder thumbnails/<folder with user uid as name>/filename
-            const uploadPath = `thumbnails/${res.user.uid}/${thumbnail.name}`
-
-            const img = await projectStorage.ref(uploadPath).put(thumbnail)
-
-            const imgUrl = await img.ref.getDownloadURL()  // getting the url of the image
-
             // add display name to user
 
-            await res.user.updateProfile({displayName, photoURL : imgUrl})
+            await res.user.updateProfile({displayName})
 
             // create a user document (to store online status, photoUrl and displayName,
             // because we plan to show all the members in a project in sidebar, with their
@@ -43,9 +35,7 @@ export const useSignup = () => {
             // .doc(res.user.id) will create a new document if it isn't existing
             // .set({properties}) is used to set the data in the document
             await projectFirestore.collection("users").doc(res.user.uid).set({
-                online : true,
                 displayName,
-                photoURL : imgUrl,
                 questionPaperIDs : [],
                 testHistory : []
             })

@@ -3,7 +3,9 @@
   /* display: flex; */
   width: 100vw;
   height: 100vh;
+  /* background-color: rgb(228, 176, 108); */
 
+  /* background-image: linear-gradient(to bottom right, rgb(255, 179, 58) , rgba(59, 140, 165, 0.773)); */
 }
 
 .app-div {
