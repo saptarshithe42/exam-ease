@@ -4,7 +4,6 @@ import { useAuthContext } from '../hooks/useAuthContext'
 
 // styles & images
 import './Navbar.css'
-import Temple from '../assets/temple.svg'
 
 
 function Navbar() {
@@ -13,27 +12,7 @@ function Navbar() {
   const { user } = useAuthContext()
 
   return (
-    // <div className="navbar">
-    //   <ul>
-    //     <li className="logo">
-    //       {/* <img src={Temple} alt="dojo logo" /> */}
-    //       <span>Exam Ease</span>
-    //     </li>
-    // {!user &&
-    //   <>
-    //     <li><Link to="/login">Login</Link></li>
-    //     <li><Link to="/signup">Signup</Link></li>
-    //   </>
-    // }
-
-    //     {user &&
-    //       <li>
-    //         {!isPending && <button className="btn" onClick={logout}>Logout</button>}
-    //         {isPending && <button className="btn" disabled>Logging out...</button>}
-    //       </li>
-    //     }
-    //   </ul>
-    // </div>
+  
     <nav className="navbar navbar-expand-md bg-body-tertiary">
       <div className="container-fluid">
         <a className="navbar-brand" href="/">Exam Ease</a>

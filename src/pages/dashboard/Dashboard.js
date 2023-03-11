@@ -20,6 +20,7 @@ export default function Dashboard() {
 
 	const getQuestionPaperArr = async () => {
 
+		// fetching questionPaperIDs array from user's document
 		let qpArray = (await userRef.get()).data().questionPaperIDs
 		setQuestionPaperArray(qpArray)
 	}
@@ -30,6 +31,8 @@ export default function Dashboard() {
 
 	}, [questionPaperArray.length])
 
+
+	// function to delete a question paper
 	const deletePaper = async (id) => {
 		// console.log(id);
 
@@ -43,18 +46,19 @@ export default function Dashboard() {
 			await reportRef.doc(id).delete()
 			
 
+			// now deleting the id entry from the users document (questionPaperIDs field)
 			const userRef = projectFirestore.collection("users").doc(user.uid)
 
 			const newArr = questionPaperArray.filter((questionPaper) => {
 				return (questionPaper.id !== id)
 			})
 
-			// adding currently created question paper ID in questionPaperIDs array in user document
+			// setting updated array as users questionPaperIDs array
 			await userRef.update({
 				questionPaperIDs: newArr
 			})
 
-			setQuestionPaperArray(newArr)
+			setQuestionPaperArray(newArr) // update UI
 		}
 		catch (err) {
 			console.log(err);

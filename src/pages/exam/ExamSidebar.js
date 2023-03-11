@@ -1,7 +1,6 @@
 import React from 'react'
 import { useAuthContext } from '../../hooks/useAuthContext';
 import { useState } from 'react';
-import { useMemo } from 'react';
 
 // styles
 import "./ExamSidebar.css"
@@ -43,7 +42,6 @@ function ExamSidebar(props) {
     // console.log("questions : " + numberOfQuestions);
 
     const [sidebarCollapsed, setSidebarCollapsed] = useState(false)
-    const [questionSelected, setQuestionSelected] = useState(1)
 
     return (
         <div

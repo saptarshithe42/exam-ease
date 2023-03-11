@@ -82,7 +82,7 @@ export default function Create() {
 				name : questionPaperName,
 				createdAt
 			})
-			// adding currently created question paper ID in questionPaperIDs array in user document
+			// adding currently created question paper ID in questionPaperIDs array in user's document
 			await userRef.update({
 				questionPaperIDs: qpArray
 			})
@@ -101,6 +101,7 @@ export default function Create() {
 			console.log("Could not update documents.")
 		}
 
+		// redirect to dashboard
 		history.push("/")
 
 	}

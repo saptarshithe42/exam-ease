@@ -10,8 +10,6 @@ function Report() {
 
     const { id } = useParams()
 
-    const { user } = useAuthContext()
-
     const { document: report } = useDocument("reports", id)
 
     const componentRef = useRef()

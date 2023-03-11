@@ -1,10 +1,8 @@
 
-
-import Avatar from "./Avatar"
 import { useAuthContext } from "../hooks/useAuthContext"
 
 // styles & images
-import "./Sidebar1.css"
+import "./Sidebar.css"
 import DashboardIcon from "../assets/dashboard_icon.svg"
 import AddIcon from "../assets/add_icon.svg"
 

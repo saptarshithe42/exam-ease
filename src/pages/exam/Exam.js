@@ -3,7 +3,6 @@ import { useState } from "react"
 import { projectFirestore, timestamp } from "../../firebase/config"
 import { useAuthContext } from "../../hooks/useAuthContext"
 import { useHistory } from "react-router-dom"
-import { useMemo } from "react"
 
 // styles
 import "./Exam.css"
@@ -68,6 +67,8 @@ function Exam() {
         setError(null)
         setCodeEntered(true)
         try {
+
+            // fetching the question paper
             const docSnap = await projectFirestore.collection("question_papers").doc(questionPaperCode).get()
 
             // console.log(docSnap.exists)
@@ -91,10 +92,10 @@ function Exam() {
     const submitAnswer = async () => {
 
         const attemptedAt = timestamp.fromDate(new Date())
-        let count = 0
+        let count = 0 // correct answer count
         let marksObtained = 0
         let questionArr = questionPaper.questionsList
-        console.log(answerMap)
+        // console.log(answerMap)
         questionArr.map((question, index) => {
             let optionArr = question.options
             let correctAnswer = question.correctAnswer
@@ -105,8 +106,8 @@ function Exam() {
             }
         })
 
-        console.log("count = " + count)
-        console.log("marks obtained : " + marksObtained)
+        // console.log("count = " + count)
+        // console.log("marks obtained : " + marksObtained)
         
 
         try{
@@ -114,7 +115,7 @@ function Exam() {
 
 			let testArray = (await userRef.get()).data().testHistory
 
-            // update student document for informing report to student
+            // update student document for reporting performance to student
 
 			testArray.push({
                 id : questionPaperCode, 
@@ -126,7 +127,7 @@ function Exam() {
                 totalQuestions : questionArr.length
 			})
 
-            console.log(testArray);
+            // console.log(testArray);
 
 			await userRef.update({
 				testHistory : testArray
@@ -156,6 +157,7 @@ function Exam() {
             console.log(err)
         }
 
+        // redirect to dashboard
         history.push("/")
     }
 

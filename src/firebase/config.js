@@ -10,7 +10,8 @@ const firebaseConfig = {
   storageBucket: "exam-ease-f9b89.appspot.com",
   messagingSenderId: "640558834287",
   appId: "1:640558834287:web:f6607d2f0f64e29099639a"
-};
+}
+
 
 // initialize firebase
 firebase.initializeApp(firebaseConfig)

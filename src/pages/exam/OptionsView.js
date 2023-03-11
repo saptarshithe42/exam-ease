@@ -1,5 +1,4 @@
 import React from 'react'
-import { useState } from 'react'
 
 
 function OptionsView(props) {
@@ -8,7 +7,6 @@ function OptionsView(props) {
 
     const activeOption = { backgroundColor: "yellow" }
 
-    // console.log("OptionsView.js rendered")
 
     return (
         <div>
