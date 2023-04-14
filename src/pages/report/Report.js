@@ -22,7 +22,7 @@ function Report() {
 
 
     return (
-        <div className="question-paper">
+        <div className="report">
             <button onClick={handlePrint}>Download Report</button>
 
             {report &&
@@ -33,21 +33,25 @@ function Report() {
                     <h6>Generated with : Exam Ease®</h6>
                     <div className="table-div">
                         <table>
-                            <tr>
-                                <th>Roll No.</th>
-                                <th>Name</th>
-                                <th>Correct</th>
-                                <th>Marks</th>
-                            </tr>
-                            {report.score_sheet.map((scoreObj) => {
-                                return (
-                                    <tr key={scoreObj.id}>
-                                        <td>{scoreObj.rollno}</td>
-                                        <td>{scoreObj.name}</td>
-                                        <td>{scoreObj.correctlySolved}</td>
-                                        <td>{scoreObj.marksObtained}</td>
-                                    </tr>)
-                            })}
+                            <thead>
+                                <tr>
+                                    <th>Roll No.</th>
+                                    <th>Name</th>
+                                    <th>Correct</th>
+                                    <th>Marks</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {report.score_sheet.map((scoreObj) => {
+                                    return (
+                                        <tr key={scoreObj.id}>
+                                            <td>{scoreObj.rollno}</td>
+                                            <td>{scoreObj.name}</td>
+                                            <td>{scoreObj.correctlySolved}</td>
+                                            <td>{scoreObj.marksObtained}</td>
+                                        </tr>)
+                                })}
+                            </tbody>
                         </table>
                     </div>
 

@@ -18,34 +18,38 @@ export default function Login() {
   }
 
   return (
-    <form className="login-form" onSubmit={handleSubmit}>
-      <h2>Login</h2>
-
-      <label>
-        <span>email:</span>
-        <input
-          required
-          type="email"
-          onChange={(e) => setEmail(e.target.value)}
-          value={email}
-        />
-      </label>
-
-      <label>
-        <span>password:</span>
-        <input
-          required
-          type="password"
-          onChange={(e) => setPassword(e.target.value)}
-          value={password}
-        />
-      </label>
-
+    <div className="login-div">
       <div>
-        {!isPending && <button className="btn btn-outline-success">Login</button>}
-        {isPending && <button className="btn btn-outline-success" disabled>loading</button>}
-        {error && <div className="error">{error}</div>}
+        <form className="login-form" onSubmit={handleSubmit}>
+          <h2>Login</h2>
+
+          <label>
+            <span>Email:</span>
+            <input
+              required
+              type="email"
+              onChange={(e) => setEmail(e.target.value)}
+              value={email}
+            />
+          </label>
+
+          <label>
+            <span>Password:</span>
+            <input
+              required
+              type="password"
+              onChange={(e) => setPassword(e.target.value)}
+              value={password}
+            />
+          </label>
+
+          <div>
+            {!isPending && <button className="btn btn-outline-success">Login</button>}
+            {isPending && <button className="btn btn-outline-success" disabled>loading</button>}
+            {error && <div className="error">{error}</div>}
+          </div>
+        </form>
       </div>
-    </form>
+    </div>
   )
 }

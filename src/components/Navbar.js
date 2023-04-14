@@ -22,8 +22,8 @@ function Navbar() {
     <div className="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
         {!user &&
           <ul className="nav">
-            <li className="nav-item btn btn-outline-primary"><Link to="/login">Login</Link></li>
-            <li className="nav-item btn btn-outline-primary"><Link to="/signup">Signup</Link></li>
+            <li><Link to="/login" className="nav-item btn btn-outline-primary">Login</Link></li>
+            <li><Link to="/signup" className="nav-item btn btn-outline-primary">Signup</Link></li>
           </ul>
         }
 

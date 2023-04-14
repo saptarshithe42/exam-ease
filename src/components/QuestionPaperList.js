@@ -15,10 +15,10 @@ function QuestionPaperList({ questions, deletePaper }) {
 			{/* <div> */}
 				{(questions.length != 0) &&
 
-					questions.map((questionPaper) => {
+					questions.map((questionPaper, index) => {
 
 						return (
-							<div key={questionPaper.id} className="col" 
+							<div key={index} className="col" 
 							style={{display : "flex", 
 							justifyContent : "center",
 							padding : "2rem"}}>
@@ -28,14 +28,17 @@ function QuestionPaperList({ questions, deletePaper }) {
 										<Card.Title>{questionPaper.name}</Card.Title>
 										<Card.Text>
 											{formatDistanceToNow((questionPaper.createdAt).toDate(), { addSuffix: true })}
-											<p>Paper code : {questionPaper.id}</p>
 										</Card.Text>
+										<Card.Text>
+											Paper code : {questionPaper.id}
+										</Card.Text>
+											{/* <div>Paper code : {questionPaper.id}</div> */}
 										<div style={{ display: "flex", justifyContent: "space-between" }}>
-											<Link to={`/questionpaper/${questionPaper.id}`} key={questionPaper.id}>
+											<Link to={`/questionpaper/${questionPaper.id}`}>
 												<Button variant="primary">View</Button>
 											</Link>
 
-											<Link to={`/reports/${questionPaper.id}`} key={questionPaper.id}>
+											<Link to={`/reports/${questionPaper.id}`}>
 												<Button variant="primary">Analysis</Button>
 											</Link>
 											<Button variant="primary" onClick={() => deletePaper(questionPaper.id)}>Delete</Button>
