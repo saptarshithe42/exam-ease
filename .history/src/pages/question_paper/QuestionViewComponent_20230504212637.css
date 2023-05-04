@@ -1,0 +1,14 @@
+.question-view {
+    background-color: white;
+    margin: 2rem;
+    text-align: left;
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    padding : 1rem;
+}
+
+.question-view .options {
+
+    margin: 1rem;
+}

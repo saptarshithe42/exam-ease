@@ -1,0 +1,20 @@
+.question-list{
+    
+}
+
+.qp-code{
+    background-color: #f7f7f7;
+}
+
+.qp-code-box{
+    margin : 1rem;
+    display: flex;
+    justify-content: space-between;
+    /* padding : 0.3rem; */
+}
+
+.code-copy-icon{
+    font-size: 1.1rem;
+    cursor : pointer;
+    margin-left : 0.2rem;
+}
