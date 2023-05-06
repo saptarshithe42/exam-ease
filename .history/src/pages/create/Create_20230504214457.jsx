@@ -153,7 +153,40 @@ export default function Create() {
 								min={0}
 								required
 							/>
-						</div>		
+						</div>
+						{/* <label>
+							<span>Question paper name : </span>
+							<input
+								required
+								type="text"
+								onChange={(e) => setQuestionPaperName(e.target.value)}
+								value={questionPaperName}
+							/>
+						</label> */}
+
+						{/* <label>
+							<span>Enter number of questions : </span>
+							<input
+								required
+								type="Number"
+								onChange={(e) => convertToNum(e.target.value)}
+								value={numberOfQuestions}
+								min={0}
+								className="numInput"
+							/>
+						</label> */}
+
+						{/* <label>
+							<span>Enter time in minutes : </span>
+							<input
+								required
+								type="Number"
+								onChange={(e) => convertToSec(e.target.value)}
+								value={minutes}
+								min={0}
+								className="numInput"
+							/>
+						</label> */}
 
 						{/* <button onClick={submitFirstForm} className="btn btn-primary">OK</button> */}
 						{(numberOfQuestions != 0) && (minutes != 0) && (questionPaperName.length > 0) &&
@@ -172,7 +205,7 @@ export default function Create() {
 					</div>
 				}
 				{
-					<div style={{marginTop : "1rem"}}>
+					<div>
 						{
 							questionsList.map((question) => {
 								return (
